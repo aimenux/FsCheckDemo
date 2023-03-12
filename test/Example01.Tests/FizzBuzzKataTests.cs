@@ -19,7 +19,7 @@ public class FizzBuzzKataTests
         return property.When(number % 5 == 0 && number % 3 != 0);
     }
     
-    [Property(Arbitrary = new[] { typeof(NumberGenerator) })]
+    [Property(Arbitrary = new[] { typeof(DataGenerator) })]
     public Property Given_Number_Divisible_By_Three_And_By_Five_Then_Returns_FizzBuzz(int number)
     {
         var property = () => FizzBuzzKata.FizzBuzz(number) == "FizzBuzz";
@@ -33,9 +33,9 @@ public class FizzBuzzKataTests
         return property.When(number % 3 != 0 && number % 5 != 0);
     }
     
-    private static class NumberGenerator
+    private static class DataGenerator
     {
-        public static Arbitrary<int> Generate()
+        public static Arbitrary<int> GenerateNumber()
         {
             return Arb.Default.Int32().Filter(x => x % 3 == 0 && x % 5 == 0);
         }
