@@ -68,10 +68,5 @@ public class CalculatorKataTests
                 select (values.Select(x => x.Get).ToArray(), delimiter.Get);
             return input.ToArbitrary();
         }
-
-        private static bool AreBiggerNumbers(PositiveInt[] values)
-        {
-            return values.All(x => x.Item > CalculatorKata.MaximumNumber);
-        }
     }
 }
