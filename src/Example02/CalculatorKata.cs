@@ -17,7 +17,9 @@ public static class CalculatorKata
             throw new NegativeNumbersException();
         }
 
-        return numbers.Where(x => x <= MaximumNumber).Sum();
+        return numbers
+            .Where(x => x <= MaximumNumber)
+            .Sum();
     }
 }
 

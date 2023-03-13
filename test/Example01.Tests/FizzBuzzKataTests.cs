@@ -23,7 +23,7 @@ public class FizzBuzzKataTests
     public Property Given_Number_Divisible_By_Three_And_By_Five_Then_Returns_FizzBuzz(int number)
     {
         var property = () => FizzBuzzKata.FizzBuzz(number) == "FizzBuzz";
-        return property.When(number % 3 == 0 && number % 5 == 0);
+        return property.ToProperty();
     }
     
     [Property]

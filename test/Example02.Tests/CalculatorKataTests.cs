@@ -12,10 +12,10 @@ public class CalculatorKataTests
             var values = parameter.values;
             var delimiter = parameter.delimiter;
             var input = string.Join(delimiter, values);
-            var expectedResult = values.Where(x => x < CalculatorKata.MaximumNumber).Sum();
+            var expectedResult = values.Where(x => x <= CalculatorKata.MaximumNumber).Sum();
             var result = CalculatorKata.Compute(delimiter, input);
             return result == expectedResult;
-        }).QuickCheck();
+        }).QuickCheckThrowOnFailure();
     }
     
     [Fact]
@@ -28,7 +28,7 @@ public class CalculatorKataTests
             var input = string.Join(delimiter, values);
             var result = CalculatorKata.Compute(delimiter, input);
             return result == 0;
-        }).QuickCheck();
+        }).QuickCheckThrowOnFailure();
     }
     
     [Fact]
@@ -40,14 +40,14 @@ public class CalculatorKataTests
             var delimiter = parameter.delimiter;
             var input = string.Join(delimiter, values);
             Assert.Throws<NegativeNumbersException>(() => CalculatorKata.Compute(delimiter, input));
-        }).QuickCheck();
+        }).QuickCheckThrowOnFailure();
     }
     
     private static class DataGenerator
     {
         public static Arbitrary<(int[] values, string delimiter)> GenerateBiggerNumbers()
         {
-            var input = from values in Gen.ArrayOf(Gen.Constant(CalculatorKata.MaximumNumber))
+            var input = from values in Gen.ArrayOf(Gen.Constant(10 * CalculatorKata.MaximumNumber))
                 from delimiter in Arb.Generate<NonEmptyString>().Where(x => !x.Item.IsInteger())
                 select (values, delimiter.Get);
             return input.ToArbitrary();
