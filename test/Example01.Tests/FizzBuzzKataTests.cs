@@ -21,14 +21,14 @@ public class FizzBuzzKataTests
         return property.ToProperty();
     }
     
-    [Property(Arbitrary = new[] { typeof(DivisibleByThreeAndByFiveDataGenerator) }, MaxTest = MaximumNumber)]
-    public Property Given_Number_Divisible_By_Three_And_By_Five_Then_Returns_FizzBuzz(int number)
+    [Property(Arbitrary = new[] { typeof(DivisibleByThreeAndFiveDataGenerator) }, MaxTest = MaximumNumber)]
+    public Property Given_Number_Divisible_By_Three_And_Five_Then_Returns_FizzBuzz(int number)
     {
         var property = () => FizzBuzzKata.FizzBuzz(number) == "FizzBuzz";
         return property.ToProperty();
     }
     
-    [Property(Arbitrary = new[] { typeof(NotDivisibleByThreeAndByFiveDataGenerator) }, MaxTest = MaximumNumber)]
+    [Property(Arbitrary = new[] { typeof(NotDivisibleByThreeAndFiveDataGenerator) }, MaxTest = MaximumNumber)]
     public Property Given_Number_Not_Divisible_By_Three_And_Five_Then_Returns_Number(int number)
     {
         var property = () => FizzBuzzKata.FizzBuzz(number) == number.ToString();
@@ -51,7 +51,7 @@ public class FizzBuzzKataTests
         }
     }
     
-    private static class DivisibleByThreeAndByFiveDataGenerator
+    private static class DivisibleByThreeAndFiveDataGenerator
     {
         public static Arbitrary<int> GenerateNumber()
         {
@@ -59,7 +59,7 @@ public class FizzBuzzKataTests
         }
     }
     
-    private static class NotDivisibleByThreeAndByFiveDataGenerator
+    private static class NotDivisibleByThreeAndFiveDataGenerator
     {
         public static Arbitrary<int> GenerateNumber()
         {
