@@ -6,7 +6,6 @@ Using FsCheck to perform property based testing
 ```
 
 In this repo, i m using [FsCheck](https://fscheck.github.io/FsCheck/) in order to perform property based testing.
-6
 >
 > :one: `Example01` use FizzBuzz kata
 >
